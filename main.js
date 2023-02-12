@@ -16,8 +16,6 @@ function createGrid(size) {
   singleColor(grid);
 }
 
-// const grid = document.querySelectorAll(".grid");
-
 function singleColor(grid) {
   grid.forEach((item) => {
     item.addEventListener("mouseenter", function (e) {
@@ -26,15 +24,35 @@ function singleColor(grid) {
   });
 }
 
+function randomColor(grid) {
+  grid.forEach((item) => {
+    item.addEventListener("mouseenter", function (e) {
+      changeRandomColor(item);
+    });
+  });
+}
+
 function changeSingleColor(item) {
   item.style.backgroundColor = "#81a1c1";
 }
 
+function changeRandomColor(item) {
+  const colors = ["#bf616a", "#d08770", "#ebcb8b", "#a3be8c", "#b48ead"];
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  item.style.backgroundColor = colors[randomIndex];
+}
+
 const sizeButton = document.querySelector(".size-button");
+const randomButton = document.querySelector(".random-button");
 
 sizeButton.addEventListener("click", function (e) {
   removeGrid();
   createGrid(getSize());
+});
+
+randomButton.addEventListener("click", function (e) {
+  const grid = document.querySelectorAll(".grid");
+  randomColor(grid);
 });
 
 function getSize() {
