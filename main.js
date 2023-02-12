@@ -1,8 +1,14 @@
-const container = document.querySelector(".container");
-const sizeButton = document.querySelector(".size-button");
+const DEFAULT_GRID = 16;
+const CONTAINER_SIZE = 650;
+
+const shadingButton = document.querySelector(".shading-button");
 const randomButton = document.querySelector(".random-button");
 const plainButton = document.querySelector(".plain-button");
-const shadingButton = document.querySelector(".shading-button");
+const sizeButton = document.querySelector(".size-button");
+const container = document.querySelector(".container");
+
+// initialization of the first 16x16 default grid
+createGrid(DEFAULT_GRID);
 
 // create a new grid with plain color filling option by default
 function createGrid(size) {
@@ -10,8 +16,8 @@ function createGrid(size) {
     for (let j = 0; j < size; j++) {
       const div = document.createElement("div");
       div.classList.add("grid");
-      div.style.width = `${650 / size}px`;
-      div.style.height = `${650 / size}px`;
+      div.style.width = `${CONTAINER_SIZE / size}px`;
+      div.style.height = `${CONTAINER_SIZE / size}px`;
       container.appendChild(div);
     }
   }
@@ -19,11 +25,9 @@ function createGrid(size) {
   singleColor(grid);
 }
 
-// initialization of the first 16x16 default grid
-createGrid(16);
-
 // change grid item to a single color with opacity 1
-function singleColor(grid) {
+function singleColor() {
+  const grid = document.querySelectorAll(".grid");
   grid.forEach((item) => {
     item.addEventListener("mouseenter", function () {
       item.style.backgroundColor = "#81a1c1";
@@ -33,7 +37,8 @@ function singleColor(grid) {
 }
 
 // change grid item to a "random" color with opacity 1
-function randomColor(grid) {
+function randomColor() {
+  const grid = document.querySelectorAll(".grid");
   grid.forEach((item) => {
     item.addEventListener("mouseenter", function (e) {
       const colors = ["#bf616a", "#d08770", "#ebcb8b", "#a3be8c", "#b48ead"];
@@ -45,7 +50,8 @@ function randomColor(grid) {
 }
 
 // change grid item to an incremental level of opacity until it reaches 1
-function shadingColor(grid) {
+function shadingColor() {
+  const grid = document.querySelectorAll(".grid");
   grid.forEach((item) => {
     let opacity = 0;
     item.addEventListener("mouseenter", function (e) {
@@ -57,20 +63,21 @@ function shadingColor(grid) {
   });
 }
 
-// gets the desired new grid size and makes sure it is correct
-function getSize() {
-  let size = prompt("Enter a new grid size (between 1 and 100): ");
-
-  return checkSize(size) == 0 ? (size = getSize()) : size;
-}
-
-// removes the current grid to make place for the new grid
-function removeGrid() {
-  const currentGrid = document.querySelectorAll(".grid");
-
+// changes the current grid size
+function changeGridSize() {
+  // removes the current grid
+  let currentGrid = document.querySelectorAll(".grid");
   currentGrid.forEach((item) => {
     container.removeChild(item);
   });
+  // creates a new grid with the required size
+  createGrid(getSize());
+}
+
+// gets the desired new grid size and makes sure it is correct
+function getSize() {
+  let size = prompt("Enter a new grid size (between 1 and 100): ");
+  return checkSize(size) == 0 ? (size = getSize()) : size;
 }
 
 // checks that the size is correct by being between 1 and 100
@@ -80,22 +87,8 @@ function checkSize(size) {
   }
 }
 
-sizeButton.addEventListener("click", function (e) {
-  removeGrid();
-  createGrid(getSize());
-});
-
-randomButton.addEventListener("click", function (e) {
-  const grid = document.querySelectorAll(".grid");
-  randomColor(grid);
-});
-
-plainButton.addEventListener("click", function (e) {
-  const grid = document.querySelectorAll(".grid");
-  singleColor(grid);
-});
-
-shadingButton.addEventListener("click", function (e) {
-  const grid = document.querySelectorAll(".grid");
-  shadingColor(grid);
-});
+// event listeners for the different buttons
+shadingButton.addEventListener("click", () => shadingColor());
+sizeButton.addEventListener("click", () => changeGridSize());
+randomButton.addEventListener("click", () => randomColor());
+plainButton.addEventListener("click", () => singleColor());
