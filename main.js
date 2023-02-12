@@ -44,6 +44,7 @@ function changeRandomColor(item) {
 
 const sizeButton = document.querySelector(".size-button");
 const randomButton = document.querySelector(".random-button");
+const plainButton = document.querySelector(".plain-button");
 
 sizeButton.addEventListener("click", function (e) {
   removeGrid();
@@ -53,6 +54,11 @@ sizeButton.addEventListener("click", function (e) {
 randomButton.addEventListener("click", function (e) {
   const grid = document.querySelectorAll(".grid");
   randomColor(grid);
+});
+
+plainButton.addEventListener("click", function (e) {
+  const grid = document.querySelectorAll(".grid");
+  singleColor(grid);
 });
 
 function getSize() {
