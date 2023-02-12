@@ -14,17 +14,38 @@ h1 {
   font-size: 50px;
 }
 
+button {
+  background-color: #eceff4;
+  transition-duration: 0.4s;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  color: #2e3440;
+  font-size: 16px;
+  border: none;
+  height: 40px;
+  width: 100px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #8fbcbb;
+  color: #e5e9f0;
+}
+
+button:clicked {
+  background-color:#eceff4;
+}
+
 .container {
   margin-top: 10px;
-  max-width: 660px;
   flex-wrap: wrap;
   display: flex;
-  gap: 0.5px
+  height: 650px;
+  width: 650px;
 }
 
 .grid {
+  border: #2e3440 0.5px solid;
   background-color: #e5e9f0;
-  border-radius: 6px;
-  width: 40px;
-  height: 40px;
-}
+  box-sizing: border-box;;
+} 
