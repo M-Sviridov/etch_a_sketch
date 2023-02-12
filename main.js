@@ -20,6 +20,7 @@ function singleColor(grid) {
   grid.forEach((item) => {
     item.addEventListener("mouseenter", function (e) {
       changeSingleColor(item);
+      item.style.opacity = 1;
     });
   });
 }
@@ -28,6 +29,18 @@ function randomColor(grid) {
   grid.forEach((item) => {
     item.addEventListener("mouseenter", function (e) {
       changeRandomColor(item);
+      item.style.opacity = 1;
+    });
+  });
+}
+
+function shadingColor(grid) {
+  grid.forEach((item) => {
+    let opacity = 0;
+    item.addEventListener("mouseenter", function (e) {
+      opacity += 0.1;
+      if (opacity > 1) opacity = 1;
+      changeShadingColor(item, opacity);
     });
   });
 }
@@ -42,9 +55,15 @@ function changeRandomColor(item) {
   item.style.backgroundColor = colors[randomIndex];
 }
 
+function changeShadingColor(item, opacity) {
+  item.style.opacity = opacity;
+  item.style.backgroundColor = "#8fbcbb";
+}
+
 const sizeButton = document.querySelector(".size-button");
 const randomButton = document.querySelector(".random-button");
 const plainButton = document.querySelector(".plain-button");
+const shadingButton = document.querySelector(".shading-button");
 
 sizeButton.addEventListener("click", function (e) {
   removeGrid();
@@ -59,6 +78,11 @@ randomButton.addEventListener("click", function (e) {
 plainButton.addEventListener("click", function (e) {
   const grid = document.querySelectorAll(".grid");
   singleColor(grid);
+});
+
+shadingButton.addEventListener("click", function (e) {
+  const grid = document.querySelectorAll(".grid");
+  shadingColor(grid);
 });
 
 function getSize() {
