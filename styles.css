@@ -48,3 +48,8 @@ button:clicked {
   background-color: #e5e9f0;
   box-sizing: border-box;;
 } 
+
+.color-options {
+  display: flex;
+  gap: 50px;
+}
