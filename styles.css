@@ -28,9 +28,9 @@ button {
 }
 
 button:hover {
-  cursor: pointer;
   background-color: #8fbcbb;
   color: #e5e9f0;
+  cursor: pointer;
 }
 
 button:clicked {
@@ -48,7 +48,7 @@ button:clicked {
 .grid {
   border: #2e3440 0.5px solid;
   background-color: #e5e9f0;
-  box-sizing: border-box;;
+  box-sizing: border-box;
 } 
 
 .color-options {
