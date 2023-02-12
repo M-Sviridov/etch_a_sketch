@@ -17,7 +17,6 @@ h1 {
 button {
   background-color: #eceff4;
   transition-duration: 0.4s;
-  margin-bottom: 10px;
   border-radius: 5px;
   color: #2e3440;
   font-size: 16px;
@@ -37,7 +36,7 @@ button:clicked {
 }
 
 .container {
-  margin-top: 10px;
+  margin: 20px 0px;
   flex-wrap: wrap;
   display: flex;
   height: 650px;
