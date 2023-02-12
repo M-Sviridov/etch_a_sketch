@@ -1,5 +1,6 @@
 html {
   background-color:#2e3440;
+  font-family: "monaco";
 }
 
 body {
@@ -17,12 +18,13 @@ h1 {
 button {
   background-color: #eceff4;
   transition-duration: 0.4s;
+  font-family: "monaco";
   border-radius: 5px;
   color: #2e3440;
-  font-size: 16px;
+  font-size: 15px;
   border: none;
   height: 40px;
-  width: 100px;
+  width: 120px;
 }
 
 button:hover {
@@ -36,7 +38,7 @@ button:clicked {
 }
 
 .container {
-  margin: 20px 0px;
+  margin: 15px 0px;
   flex-wrap: wrap;
   display: flex;
   height: 650px;
@@ -51,5 +53,5 @@ button:clicked {
 
 .color-options {
   display: flex;
-  gap: 50px;
+  gap: 60px;
 }
