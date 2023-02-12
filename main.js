@@ -25,8 +25,9 @@ createGrid(16);
 // change grid item to a single color with opacity 1
 function singleColor(grid) {
   grid.forEach((item) => {
-    item.addEventListener("mouseenter", function (e) {
-      changeSingleColor(item);
+    item.addEventListener("mouseenter", function () {
+      item.style.backgroundColor = "#81a1c1";
+      item.style.opacity = 1;
     });
   });
 }
@@ -35,7 +36,10 @@ function singleColor(grid) {
 function randomColor(grid) {
   grid.forEach((item) => {
     item.addEventListener("mouseenter", function (e) {
-      changeRandomColor(item);
+      const colors = ["#bf616a", "#d08770", "#ebcb8b", "#a3be8c", "#b48ead"];
+      const randomIndex = Math.floor(Math.random() * colors.length);
+      item.style.backgroundColor = colors[randomIndex];
+      item.style.opacity = 1;
     });
   });
 }
@@ -47,41 +51,17 @@ function shadingColor(grid) {
     item.addEventListener("mouseenter", function (e) {
       opacity += 0.1;
       if (opacity > 1) opacity = 1;
-      changeShadingColor(item, opacity);
+      item.style.opacity = opacity;
+      item.style.backgroundColor = "#8fbcbb";
     });
   });
-}
-
-// helper function for the singleColor() function
-function changeSingleColor(item) {
-  item.style.backgroundColor = "#81a1c1";
-  item.style.opacity = 1;
-}
-
-// helper function for the randomColor() function
-function changeRandomColor(item) {
-  const colors = ["#bf616a", "#d08770", "#ebcb8b", "#a3be8c", "#b48ead"];
-  const randomIndex = Math.floor(Math.random() * colors.length);
-  item.style.backgroundColor = colors[randomIndex];
-  item.style.opacity = 1;
-}
-
-// helper function for the shadingColor() function
-function changeShadingColor(item, opacity) {
-  item.style.opacity = opacity;
-  item.style.backgroundColor = "#8fbcbb";
 }
 
 // gets the desired new grid size and makes sure it is correct
 function getSize() {
   let size = prompt("Enter a new grid size (between 1 and 100): ");
 
-  if (checkSize(size) == 0) {
-    console.log("size incorrect");
-    size = getSize();
-  } else {
-    return size;
-  }
+  return checkSize(size) == 0 ? (size = getSize()) : size;
 }
 
 // removes the current grid to make place for the new grid
